@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { HeroHeader } from "@/components/hero8-header";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
-import { FormattedMessage } from "react-intl";
+import SafeFormattedMessage from "./SafeFormattedMessage/SafeFormattedMessage";
 import { useRouter } from "next/router";
 
 export default function HeroSection() {
@@ -21,7 +20,6 @@ export default function HeroSection() {
 
   return (
     <>
-      <HeroHeader />
       <main className="overflow-x-hidden">
         <section>
           <div className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44">
