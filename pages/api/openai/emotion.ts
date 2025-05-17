@@ -1,5 +1,4 @@
 import openai from "@/lib/openai";
-import { s } from "motion/react-client";
 import { NextApiRequest, NextApiResponse } from "next";
 
 
@@ -11,6 +10,7 @@ export default async function generateEmotion(
         return res.status(405).json({ error: "Method not allowed" });
     }
     const message = req.body.message
+    const language:string = req?.body?.language || "fr";
     if (!process.env.OPEN_AI_SECRET_KEY) {
         return res.status(500).json({ error: "OpenAI API key not configured",succes: false });
     }
@@ -18,8 +18,8 @@ export default async function generateEmotion(
         model: "gpt-4o-mini",
         messages: [
             {
-                role: "user",
-                content: message,
+                role: "assistant",
+                content: `Écris un message d'adieu avec un ton dramatique,${message}, mettre dans 2 phrases max, et en ${language?.toUpperCase()}.`,
             },
         ],
     })
