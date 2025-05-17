@@ -5,8 +5,11 @@ import Image from "next/image";
 import { HeroHeader } from "@/components/hero8-header";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
+import { FormattedMessage } from "react-intl";
+import { useRouter } from "next/router";
 
 export default function HeroSection() {
+  const {locale}  = useRouter()
   return (
     <>
       <HeroHeader />
@@ -14,7 +17,7 @@ export default function HeroSection() {
         <section>
           <div className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44">
             <div className="relative mx-auto flex max-w-6xl flex-col px-6 lg:block">
-              <div className="mx-auto max-w-xl text-center lg:ml-0 lg:w-1/2 lg:text-left">
+              <div className="mx-auto max-w-lg text-center lg:ml-0 lg:w-1/2 lg:text-left">
                 <h1 className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16 xl:text-7xl">
                   Quand une porte se ferme, TheEnd.Page s'ouvre
                 </h1>

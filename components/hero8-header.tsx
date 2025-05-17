@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { ModeToggle } from "./mode-toggle";
+import { SwitcherLanguage } from "./switcherLang";
 
 const menuItems = [
   { name: "Features", href: "#link" },
@@ -15,6 +16,7 @@ const menuItems = [
 
 export const HeroHeader = () => {
   const [menuState, setMenuState] = React.useState(false);
+
   return (
     <header>
       <nav
@@ -72,6 +74,7 @@ export const HeroHeader = () => {
                   </Link>
                 </Button>
                 <ModeToggle />
+                <SwitcherLanguage />
               </div>
             </div>
           </div>
