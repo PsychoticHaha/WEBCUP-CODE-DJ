@@ -1,7 +1,9 @@
 {
-    "greeting": "Bonjour, le monde !",
-    "farewell": "Au revoir, le monde !",
-    "welcome": "Bienvenue dans notre application !",
-    "french": "Français",
-    "english": "Anglais"
+  "greeting": "Bonjour, le monde !",
+  "farewell": "Au revoir, le monde !",
+  "welcome": "Bienvenue dans notre application !",
+  "french": "Français",
+  "english": "Anglais",
+  "globals.button.login": "Se connecter",
+  "globals.button.register": "S'inscrire"
 }

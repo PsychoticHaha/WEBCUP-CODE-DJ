@@ -1,7 +1,9 @@
 {
-    "greeting": "Hello, World!",
-    "farewell": "Goodbye, World!",
-    "welcome": "Welcome to our application!",
-    "french": "French",
-    "english": "English"
+  "greeting": "Hello, World!",
+  "farewell": "Goodbye, World!",
+  "welcome": "Welcome to our application!",
+  "french": "French",
+  "english": "English",
+  "globals.button.login": "Login",
+  "globals.button.register": "Register"
 }
