@@ -17,20 +17,18 @@ export default function HeroSection() {
         <section>
           <div className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44">
             <div className="relative mx-auto flex max-w-6xl flex-col px-6 lg:block">
-              <div className="mx-auto max-w-lg text-center lg:ml-0 lg:w-1/2 lg:text-left">
+              <div className="mx-auto max-w-xl text-center lg:ml-0 lg:w-1/2 lg:text-left">
                 <h1 className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16 xl:text-7xl">
-                  Ship 10x Faster with NS {locale}
+                  Quand une porte se ferme, TheEnd.Page s'ouvre {locale}
                 </h1>
-                <p className="mt-8 max-w-2xl text-pretty text-lg">
-                  Highly customizable components for building modern websites
-                  and applications that look and feel the way you mean it.
-                  <FormattedMessage id="welcome" />
+                <p className="mt-8 max-w-4xl text-pretty text-lg">
+                  Ceci est une page pour exprimer ce que vous ressentez, offre une large gamme de service pour vou aider à faire un pas avec le passé en transmettant un dernier message
                 </p>
 
                 <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
                   <Button asChild size="lg" className="px-5 text-base">
                     <Link href="#link">
-                      <span className="text-nowrap">Start Building</span>
+                      <span className="text-nowrap">Commencer ici</span>
                     </Link>
                   </Button>
                   <Button
@@ -41,7 +39,7 @@ export default function HeroSection() {
                     className="px-5 text-base"
                   >
                     <Link href="#link">
-                      <span className="text-nowrap">Request a demo</span>
+                      <span className="text-nowrap">Essayer un démo</span>
                     </Link>
                   </Button>
                 </div>
@@ -60,7 +58,7 @@ export default function HeroSection() {
           <div className="group relative m-auto max-w-6xl px-6">
             <div className="flex flex-col items-center md:flex-row">
               <div className="md:max-w-44 md:border-r md:pr-6">
-                <p className="text-end text-sm">Powering the best teams</p>
+                <p className="text-end text-sm">Soutenu par les entreprises</p>
               </div>
               <div className="relative py-6 md:w-[calc(100%-11rem)]">
                 <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
