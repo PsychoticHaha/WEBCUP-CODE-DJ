@@ -33,7 +33,10 @@ jobs:
       - name: Prepare deploy folder
         run: |
           mkdir deploy
-          cp -r .next package.json yarn.lock public deploy/
+          cp -r .next public package.json yarn.lock deploy/
+
+      - name: List files to deploy
+        run: ls -R deploy
 
   deploy:
     runs-on: ubuntu-latest
