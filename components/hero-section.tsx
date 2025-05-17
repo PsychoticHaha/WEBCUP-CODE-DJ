@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -9,7 +9,16 @@ import { FormattedMessage } from "react-intl";
 import { useRouter } from "next/router";
 
 export default function HeroSection() {
-  const {locale}  = useRouter()
+  const router = useRouter();
+  const { locale } = router;
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null // ou un fallback
+
   return (
     <>
       <HeroHeader />

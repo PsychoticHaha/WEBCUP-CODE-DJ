@@ -1,8 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -17,8 +15,17 @@ import Image from "next/image";
 
 
 export function SwitcherLanguage() {
- const { locale } = useRouter()
- const { pathname,push } = useRouter()
+  const { locale } = useRouter()
+  const [mounted, setMounted] = React.useState(false)
+  const router = useRouter()
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null // ou un fallback
+
+ const { pathname,push } = router
  const defaultLocale =  locale === "fr" ? "fr" : "en"
   return (
     <DropdownMenu>
