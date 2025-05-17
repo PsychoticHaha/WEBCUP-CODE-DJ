@@ -11,6 +11,7 @@ TextField,
 Typography,
 Paper,
 } from "@mui/material";
+import PageLayout from "@/components/PageLayout/PageLayout";
 
 const steps = ["Account Info", "Personal Details", "Confirmation"];
 
@@ -58,6 +59,7 @@ const onSubmit = (data: FormValues) => {
 };
 
 return (
+    <PageLayout>
     <Paper sx={{ p: 4, maxWidth: 400, mx: "auto" }}>
         <Typography variant="h5" align="center" gutterBottom>
             Register
@@ -177,5 +179,6 @@ return (
             </Box>
         </form>
     </Paper>
+    </PageLayout>
 );
 }
