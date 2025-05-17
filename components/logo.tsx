@@ -30,5 +30,6 @@ export const LogoStroke = ({ className }: { className?: string }) => {
                 stroke="currentColor"
             />
         </svg>
+        
     )
 }
