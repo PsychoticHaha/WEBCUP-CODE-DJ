@@ -14,7 +14,8 @@ export default function Home() {
       {/* <Features />
       <ContentSection />
       <CallToAction />
-      <FooterSection /> */}
+       */}
+       <FooterSection />
     </>
   );
 }
