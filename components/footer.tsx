@@ -33,7 +33,7 @@ export default function FooterSection() {
     <footer className="py-16 md:py-32">
       <div className="mx-auto max-w-5xl px-6">
         <Link href="/" aria-label="go home" className="mx-auto block size-fit">
-          <Logo />
+          <h1 className="text-3xl font-bold">TheEnd.Page</h1>
         </Link>
 
         <div className="my-8 flex flex-wrap justify-center gap-6 text-sm">
