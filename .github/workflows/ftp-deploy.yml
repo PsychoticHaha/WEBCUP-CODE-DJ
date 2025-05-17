@@ -42,7 +42,7 @@ jobs:
       #     cp -r .next public package.json yarn.lock deploy/
 
       - name: List files to deploy
-        run: ls -R deploy
+        run: ls -R .
 
       - name: Deploy to Production via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
