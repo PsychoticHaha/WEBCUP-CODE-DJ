@@ -1,0 +1,57 @@
+name: Next.js CI/CD
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Export static files
+        run: npm run export
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Production via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.CODEJD_BACK_FTP_SERVER }}
+          username: ${{ secrets.CODEJD_BACK_FTP_USERNAME }}
+          password: ${{ secrets.CODEJD_BACK_FTP_PASSWORD }}
+          local-dir: out/
+          server-dir: public_html/
+          zip-before-upload: true
+          exclude: |
+            **/node_modules/**
+            .git*
+            .env
+            .ftpignore
