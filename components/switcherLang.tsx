@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@mui/material";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,29 +25,24 @@ export function SwitcherLanguage() {
 
   if (!mounted) return null // ou un fallback
 
- const { pathname,push } = router
- const defaultLocale =  locale === "fr" ? "fr" : "en"
+  const { pathname, push } = router
+  const defaultLocale = locale === "fr" ? "fr" : "en"
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-            {defaultLocale?.toUpperCase()}  
+        <Button variant="outlined" sx={{ borderRadius: "1000px", overflow: "hidden", padding: "10px", height: "50px", width: "50px", background: "#d9d9d9", fontSize: "25px" }} >
+          {defaultLocale?.toUpperCase() === "FR" ? "🇫🇷" : "🇬🇧"}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" style={{ zIndex: 9999 }}>
         <DropdownMenuItem onClick={() => push(pathname, pathname, { locale: 'fr' })}>
-          <Image src="/flag/france.svg" alt="French Flag" width={20} height={20} className="mr-2 inline-block" />
-          <FormattedMessage id="french"/>
+          🇫🇷
+          <FormattedMessage id="french" />
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => push(pathname, pathname, { locale: 'en' })}>
-           <Image src="/flag/united-states.svg" alt="French Flag" width={20} height={20} className="mr-2 inline-block" />
-           <FormattedMessage id="english"/>
+          🇬🇧
+          <FormattedMessage id="english" />
         </DropdownMenuItem>
-         <DropdownMenuItem onClick={() => push(pathname, pathname, { locale: 'en' })}>
-           <Image src="/flag/macao.svg" alt="French Flag" width={20} height={20} className="mr-2 inline-block" />
-           Emotion
-        </DropdownMenuItem>
-        
       </DropdownMenuContent>
     </DropdownMenu>
   );
