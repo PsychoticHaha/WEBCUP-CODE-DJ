@@ -3,27 +3,23 @@ import Link from "next/link";
 
 const links = [
   {
-    title: "Features",
+    title: "Utilisation",
     href: "#",
   },
   {
-    title: "Solution",
+    title: "Service",
     href: "#",
   },
   {
-    title: "Customers",
+    title: "Contact",
     href: "#",
   },
   {
-    title: "Pricing",
+    title: "A propos",
     href: "#",
   },
   {
-    title: "Help",
-    href: "#",
-  },
-  {
-    title: "About",
+    title: "Contact",
     href: "#",
   },
 ];
@@ -176,7 +172,7 @@ export default function FooterSection() {
         </div>
         <span className="text-muted-foreground block text-center text-sm">
           {" "}
-          © {new Date().getFullYear()} Tailus UI, All rights reserved
+          © {new Date().getFullYear()} Code-dj - All right reserved.
         </span>
       </div>
     </footer>

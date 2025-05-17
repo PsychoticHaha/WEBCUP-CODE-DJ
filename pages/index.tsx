@@ -9,8 +9,9 @@ export default function Home() {
   const message = useEmotion("C'est un test de message pour générer une émotion avec OpenAI.");
   return (
     <>
-      <h1>Emotion: {message}</h1>
+      
       <HeroSection />
+      <h1>Emotion: {message}</h1>
       {/* <Features />
       <ContentSection />
       <CallToAction />
