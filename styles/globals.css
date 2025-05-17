@@ -120,3 +120,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+body {
+  font-family: 'Monda', sans-serif; 
+  
+}
+
+h1, h2, h3 {
+  font-family: 'Monda', sans-serif; 
+  
+}
+
+.font-monda {
+  font-family: 'Monda', sans-serif;
+}

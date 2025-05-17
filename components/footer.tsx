@@ -3,27 +3,23 @@ import Link from "next/link";
 
 const links = [
   {
-    title: "Features",
+    title: "Utilisation",
     href: "#",
   },
   {
-    title: "Solution",
+    title: "Service",
     href: "#",
   },
   {
-    title: "Customers",
+    title: "Contact",
     href: "#",
   },
   {
-    title: "Pricing",
+    title: "A propos",
     href: "#",
   },
   {
-    title: "Help",
-    href: "#",
-  },
-  {
-    title: "About",
+    title: "Contact",
     href: "#",
   },
 ];
@@ -33,7 +29,7 @@ export default function FooterSection() {
     <footer className="py-16 md:py-32">
       <div className="mx-auto max-w-5xl px-6">
         <Link href="/" aria-label="go home" className="mx-auto block size-fit">
-          <Logo />
+          <h1 className="text-3xl font-bold">TheEnd.Page</h1>
         </Link>
 
         <div className="my-8 flex flex-wrap justify-center gap-6 text-sm">
@@ -176,7 +172,7 @@ export default function FooterSection() {
         </div>
         <span className="text-muted-foreground block text-center text-sm">
           {" "}
-          © {new Date().getFullYear()} Tailus UI, All rights reserved
+          © {new Date().getFullYear()} Code-dj - All right reserved.
         </span>
       </div>
     </footer>
