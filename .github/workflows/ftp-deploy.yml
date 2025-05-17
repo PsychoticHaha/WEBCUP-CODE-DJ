@@ -30,6 +30,11 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Prepare deploy folder
+        run: |
+          mkdir deploy
+          cp -r .next package.json yarn.lock public deploy/
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -42,7 +47,6 @@ jobs:
           server: ${{ secrets.CODEJD_BACK_FTP_SERVER }}
           username: ${{ secrets.CODEJD_BACK_FTP_USERNAME }}
           password: ${{ secrets.CODEJD_BACK_FTP_PASSWORD }}
-          local-dir: ./
           server-dir: public_html/
           zip-before-upload: true
           exclude: |
