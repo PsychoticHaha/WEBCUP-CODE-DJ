@@ -33,6 +33,9 @@ export function SwitcherLanguage() {
         <DropdownMenuItem onClick={() => push(pathname, pathname, { locale: 'en' })}>
            <FormattedMessage id="english"/>
         </DropdownMenuItem>
+         <DropdownMenuItem onClick={() => push(pathname, pathname, { locale: 'en' })}>
+           Emotion
+        </DropdownMenuItem>
         
       </DropdownMenuContent>
     </DropdownMenu>
