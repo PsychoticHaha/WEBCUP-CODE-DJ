@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/router";
+import { FormattedMessage } from "react-intl";
 
 
 export function SwitcherLanguage() {
@@ -27,11 +28,10 @@ export function SwitcherLanguage() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => push(pathname, pathname, { locale: 'fr' })}>
-          {locale === "fr" ? "Francais" : "French"}
-          
+          <FormattedMessage id="french"/>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => push(pathname, pathname, { locale: 'en' })}>
-          {locale === "fr" ? "Englais" : "English"}
+           <FormattedMessage id="english"/>
         </DropdownMenuItem>
         
       </DropdownMenuContent>
