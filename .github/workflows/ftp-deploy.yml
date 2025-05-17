@@ -26,12 +26,12 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-        
+
       - name: Build
         run: yarn build
 
       - name: Export static files
-        run: yarn export
+        run: yarn start
 
 
   deploy:
