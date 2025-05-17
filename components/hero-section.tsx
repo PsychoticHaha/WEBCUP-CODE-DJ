@@ -53,13 +53,6 @@ export default function HeroSection() {
                   </Button>
                 </div>
               </div>
-              <Image
-                className="-z-10 order-first ml-auto h-56 w-full object-cover invert sm:h-96 lg:absolute lg:inset-0 lg:-right-20 lg:-top-96 lg:order-last lg:h-max lg:w-2/3 lg:object-contain dark:mix-blend-lighten dark:invert-0"
-                src="https://res.cloudinary.com/dg4jhba5c/image/upload/v1741605150/abstract-bg_wq4f8w.jpg"
-                alt="Abstract Object"
-                height="4000"
-                width="3000"
-              />
             </div>
           </div>
         </section>

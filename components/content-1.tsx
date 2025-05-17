@@ -17,16 +17,8 @@ export default function ContentSection() {
                 width={1207}
                 height={929}
               />
-              <Image
-                src="/payments-light.png"
-                className="rounded-[15px] shadow dark:hidden"
-                alt="payments illustration light"
-                width={1207}
-                height={929}
-              />
             </div>
           </div>
-
           <div className="relative space-y-4">
             <p className="text-muted-foreground">
               Gemini is evolving to be more than just the models.{" "}
