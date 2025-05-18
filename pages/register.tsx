@@ -26,6 +26,7 @@ type FormValues = {
 
 export default function Register() {
   const [activeStep, setActiveStep] = useState(0);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const intl = useIntl();
   const steps = [intl.formatMessage({ id: "login.account-infos" }), intl.formatMessage({ id: "login.personnal-details" }), intl.formatMessage({ id: "login.confirmation" })];
 
@@ -58,9 +59,32 @@ export default function Register() {
 
   const onBack = () => setActiveStep((prev) => prev - 1);
 
-  const onSubmit = (data: FormValues) => {
-    // handle registration logic here
-    alert(JSON.stringify(data, null, 2));
+  const onSubmit = async (data: FormValues) => {
+    setErrorMsg(null);
+    try {
+      const res = await fetch("/api/register", { // crée cet endpoint API pour gérer inscription
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          name: data.firstName,
+          fullname: data.lastName,
+        }),
+      });
+
+      const json = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(json.error || "Erreur inconnue");
+        return;
+      }
+
+      alert("Inscription réussie !");
+      // Ici, tu peux rediriger l'utilisateur ou changer d'état, etc.
+    } catch (e) {
+      setErrorMsg("Erreur réseau ou serveur");
+    }
   };
 
   return (
