@@ -18,7 +18,7 @@ const ThoughtInput: React.FC = () => {
   return (
     <div className={`relative rounded-lg transition-all duration-300 ${isFocused ? 'ring-2 ring-primary-500' : ''}`}>
       <textarea
-        className="input-dark min-h-32 shadow-inner-dark resize-none text-base md:text-lg"
+        className="input-dark min-h-32 shadow-inner-dark resize-none text-base md:text-lg w-full"
         placeholder="Exprimez-vous......"
         value={thought.text}
         onChange={handleTextChange}
