@@ -13,8 +13,7 @@ const ThoughtCreator: React.FC = () => {
   const [showTools, setShowTools] = useState(false);
 
   const handleGenerateCard = () => {
-    // In a real app, this would generate and save the card
-    alert('Carte générée avec succès !');
+    
     resetThought();
   };
 

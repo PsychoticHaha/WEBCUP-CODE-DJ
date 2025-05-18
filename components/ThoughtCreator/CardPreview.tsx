@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Palette, User } from 'lucide-react';
 import { useThought } from '@/provider/ThoughtContext';
+import { useEmotion } from '@/hooks/useEmotion';
 import { useIntl } from 'react-intl';
 
 const BACKGROUND_COLORS = [
@@ -20,7 +21,16 @@ const CardPreview: React.FC = () => {
     updateThought({ backgroundColor: color });
     setShowColorPicker(false);
   };
-  
+
+  const {getEmotion,emotion} = useEmotion(thought?.text ,true)
+
+  useEffect(() => {
+    if (thought.text) {
+      getEmotion(thought.text);
+    }
+  }
+  , [thought.text]);
+
   return (
     <div className="card-preview h-[450px] md:h-[480px] flex flex-col">
       <div 
@@ -59,9 +69,9 @@ const CardPreview: React.FC = () => {
         </div>
         
         <div className="flex-1 overflow-y-auto">
-          {thought.text ? (
+          {(thought.text && emotion) ? (
             <p className="text-white text-base md:text-lg whitespace-pre-wrap">
-              {thought.text}
+              {emotion}
             </p>
           ) : (
             <p className="text-gray-400 text-base md:text-lg italic">
