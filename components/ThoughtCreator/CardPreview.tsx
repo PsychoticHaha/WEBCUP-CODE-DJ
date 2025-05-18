@@ -3,6 +3,7 @@ import { Palette, User } from 'lucide-react';
 import { useThought } from '@/provider/ThoughtContext';
 import { useEmotion } from '@/hooks/useEmotion';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 
 const BACKGROUND_COLORS = [
   '#121A2C', // dark-800
@@ -22,7 +23,8 @@ const CardPreview: React.FC = () => {
     setShowColorPicker(false);
   };
 
-  const {getEmotion,emotion} = useEmotion(thought?.text ,true)
+  const {locale} = useRouter()
+  const {getEmotion,emotion} = useEmotion(thought?.text ,true,locale)
 
   useEffect(() => {
     if (thought.text) {
