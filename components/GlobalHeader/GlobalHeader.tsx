@@ -51,12 +51,12 @@ export const GlobalHeader = () => {
                 borderRadius: "5px"
               }}>
                 <Button sx={{ minWidth: "130px" }} variant="outlined">
-                  <Link href="#">
+                  <Link href="/login">
                     <SafeFormattedMessage id="globals.button.login" defaultMessage="Se connecter" />
                   </Link>
                 </Button>
                 <Button sx={{ minWidth: "130px", background: "#000814", color: "white", borderRadius: "15px" }} variant="contained">
-                  <Link href="#">
+                  <Link href="/register">
                     <SafeFormattedMessage id="globals.button.register" defaultMessage="S'inscrire" />
                   </Link>
                 </Button>

@@ -10,5 +10,8 @@
   "globals.hero.title2": " TheEnd.Page s'ouvre.",
   "globals.button.start": "Créer une page",
   "globals.scrollDown": "Scroll",
-  "home.trust": "Ils nous font confiance"
+  "home.trust": "Ils nous font confiance",
+  "globals.have.not-account": "Vous n'avez pas de compte?",
+  "globals.welcome-back": "Bon retour !",
+  "globals.connect-first": "Connectez-vous pour voter sur la page."
 }
