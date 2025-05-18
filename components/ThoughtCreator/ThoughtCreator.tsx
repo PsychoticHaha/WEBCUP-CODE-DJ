@@ -5,6 +5,7 @@ import CardPreview from './CardPreview';
 import ThoughtInput from './ThoughtInput';
 import EmotionSelector from './EmotionSelector';
 import SafeFormattedMessage from '../SafeFormattedMessage/SafeFormattedMessage';
+import { useIntl } from 'react-intl';
 
 const ThoughtCreator: React.FC = () => {
   const { thought, updateThought, resetThought } = useThought();
@@ -16,6 +17,8 @@ const ThoughtCreator: React.FC = () => {
     alert('Carte générée avec succès !');
     resetThought();
   };
+
+  const intl = useIntl();
 
   const toggleRecording = () => {
     if (isRecording) {
@@ -83,7 +86,7 @@ const ThoughtCreator: React.FC = () => {
                   className="h-4 w-4 rounded bg-dark-700 border-dark-600 text-primary-500"
                 />
                 <label htmlFor="with-gif" className="ml-2 text-sm text-gray-300">
-                  Envoyer avec un GIF
+                  {intl.formatMessage({ id: "with-gif" })}
                 </label>
               </div>
             </div>
@@ -93,7 +96,7 @@ const ThoughtCreator: React.FC = () => {
               onClick={handleGenerateCard}
               disabled={!canGenerateCard}
             >
-              <span>Générer une carte</span>
+              <span>{intl.formatMessage({ id: "generate-a-card" })}</span>
               <Send className="ml-2 h-4 w-4" />
             </button>
           </div>
@@ -101,7 +104,7 @@ const ThoughtCreator: React.FC = () => {
       </div>
       
       <div>
-        <h2 className="text-xl font-medium text-primary-200 mb-4">Aperçu</h2>
+        <h2 className="text-xl font-medium text-primary-200 mb-4">{intl.formatMessage({ id: "preview" })}</h2>
         <CardPreview />
       </div>
     </div>

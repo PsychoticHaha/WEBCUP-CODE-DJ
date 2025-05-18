@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Palette, User } from 'lucide-react';
 import { useThought } from '@/provider/ThoughtContext';
+import { useIntl } from 'react-intl';
 
 const BACKGROUND_COLORS = [
   '#121A2C', // dark-800
@@ -14,7 +15,7 @@ const BACKGROUND_COLORS = [
 const CardPreview: React.FC = () => {
   const { thought, updateThought } = useThought();
   const [showColorPicker, setShowColorPicker] = useState(false);
-  
+  const intl = useIntl()
   const handleColorChange = (color: string) => {
     updateThought({ backgroundColor: color });
     setShowColorPicker(false);
@@ -40,7 +41,9 @@ const CardPreview: React.FC = () => {
           <div className="w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center">
             <User className="w-4 h-4" />
           </div>
-          <span className="text-sm font-medium">Utilisateur</span>
+          <span className="text-sm font-medium">
+          {intl.formatMessage({ id: "your-emo" })}
+          </span>
           {thought.emotion && (
             <span className="text-xl ml-2" role="img" aria-label="Émotion">
               {
@@ -62,7 +65,7 @@ const CardPreview: React.FC = () => {
             </p>
           ) : (
             <p className="text-gray-400 text-base md:text-lg italic">
-              Votre texte apparaîtra ici...
+              {intl.formatMessage({ id: "your-inspi" })}
             </p>
           )}
         </div>
