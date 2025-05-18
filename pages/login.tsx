@@ -43,7 +43,6 @@ const Login: React.FC = () => {
           display: 'flex',
           flexDirection: 'column',
           minHeight: '100vh', // Ensure the container takes at least the full viewport height
-          bgcolor: 'grey.100', // Light background color
           justifyContent: 'center', // Center content vertically
           alignItems: 'center', // Center content horizontally
         }}

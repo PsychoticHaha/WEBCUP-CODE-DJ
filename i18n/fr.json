@@ -21,5 +21,7 @@
   "globals.button.back": "Retour",
   "login.account-infos": "Informations de compte",
   "login.personnal-details": "Informations personnelles",
-  "login.confirmation": "Confirmation"
+  "login.confirmation": "Confirmation",
+  "write-thougts": "Ecrivez vos pensées",
+  "express-yourself": "Exprimez-vous"
 }
