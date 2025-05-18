@@ -41,14 +41,16 @@ const Login: React.FC = () => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                minHeight: '100vh', // Ensure the container takes at least the full viewport height
-                bgcolor: 'grey.100', // Light background color
-                justifyContent: 'center', // Center content vertically
-                alignItems: 'center', // Center content horizontally
+                minHeight: '100vh', 
+                bgcolor: 'grey.100', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                position: 'relative', // Added to position the paper correctly
+                
             }}
         >
-            <StyledPaper>
-                <Typography variant="h4" align="center" gutterBottom color="primary">
+            <StyledPaper sx={{ boxShadow: 3, borderRadius: 2 }}>
+                <Typography variant="h4" align="center" gutterBottom color="black">
                     Welcome Back!
                 </Typography>
                 <Typography variant="subtitle1" align="center" color="textSecondary" gutterBottom>
@@ -84,20 +86,19 @@ const Login: React.FC = () => {
                     <StyledButton
                         type="submit"
                         variant="contained"
-                        color="primary"
                         disabled={isSubmitting}
                         fullWidth
                         sx={{ mt: 3 }} // Added margin top for spacing
                     >
-                        {isSubmitting ? 'Logging In...' : 'Login'}
+                        {isSubmitting ? 'Logging In...' : 'Se connecter'}
                     </StyledButton>
                 </Box>
                 <Box sx={{ mt: 2, textAlign: 'center' }}>
                     <Link href="#" variant="body2" color="primary">
-                        Forgot password?
+                        Avez-vous oublié votre mot de passe?
                     </Link>
                     <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
-                        Don't have an account? <Link href="#" variant="body2" color="primary">Sign up</Link>
+                        N'avez-vous pas encore un compte ?  <Link href="#" variant="body2" color="primary">S'inscrire</Link>
                     </Typography>
                 </Box>
             </StyledPaper>

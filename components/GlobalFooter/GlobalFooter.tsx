@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
+import FooterSection from "../footer";
+
 
 export const GlobalFooter = () => {
-  return (
-    <Box sx={{ minHeight: "100px", backgroundColor: "red" }}>GlobalFooter</Box>
-  );
+  return <FooterSection />;
 };
