@@ -5,5 +5,8 @@
   "french": "French",
   "english": "English",
   "globals.button.login": "Login",
-  "globals.button.register": "Register"
+  "globals.button.register": "Register",
+  "globals.hero.title": "When one door closes,",
+  "globals.hero.title2": " TheEnd.Page opens.",
+  "globals.button.start": " Create my own page"
 }

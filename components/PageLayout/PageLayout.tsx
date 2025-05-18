@@ -7,7 +7,7 @@ const PageLayout = ({ children }) => {
     <Box sx={{ minHeight: "100vh" }} className="">
       <GlobalHeader></GlobalHeader>
       {children}
-      <GlobalFooter></GlobalFooter>
+      {/* <GlobalFooter></GlobalFooter> */}
     </Box>
   )
 };
