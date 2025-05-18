@@ -62,11 +62,11 @@ export default function HeroSection() {
               </Box>
             </Box>
           </Box>
-          <Typography variant="h6" sx={{marginBottom: "20px", textAlign: "center", color: "#fff", fontSize: "20px", fontWeight: 700, padding: "0 20px", position: "relative", zIndex: 2}}>
+          <Typography variant="h6" sx={{ marginBottom: "20px", textAlign: "center", color: "#fff", fontSize: "20px", fontWeight: 700, padding: "0 20px", position: "relative", zIndex: 2 }}>
             <SafeFormattedMessage id="home.trust"></SafeFormattedMessage>
           </Typography>
           <Box className="slider" sx={{
-            background: "#ffffff",
+            background: "",
             height: "100px", display: "flex", alignItems: "center",
             justifyContent: "center", padding: "0 20px", position: "relative", zIndex: 2,
             "& .flex img": {
@@ -88,8 +88,8 @@ export default function HeroSection() {
               <div className="flex">
                 <Image
                   className="mx-auto h-4 w-fit dark:invert"
-                  src="/logos/bocasay.jpeg"
-                  alt="Column Logo"
+                  src="/logos/bocasay.png"
+                  alt="Bocasay Logo"
                   height="500"
                   width="100"
                 />
@@ -115,7 +115,7 @@ export default function HeroSection() {
               <div className="flex">
                 <Image
                   className="mx-auto h-5 w-fit dark:invert"
-                  src="/logos/ingenosya.jpeg"
+                  src="/logos/ingenosya.png"
                   alt="Lemon Squeezy Logo"
                   height="500"
                   width="100"
@@ -133,7 +133,7 @@ export default function HeroSection() {
               <div className="flex">
                 <Image
                   className="mx-auto h-7 w-fit dark:invert"
-                  src="/logos/novity.jpeg"
+                  src="/logos/novity.png"
                   alt="Lilly Logo"
                   height="500"
                   width="100"
@@ -151,32 +151,7 @@ export default function HeroSection() {
               </div>
             </InfiniteSlider>
           </Box>
-
-
         </GlobalContainer>
-        {/* <section className="bg-background pb-16 md:pb-32">
-          <div className="group relative m-auto max-w-6xl px-6">
-            <div className="flex flex-col items-center md:flex-row">
-              <div className="md:max-w-44 md:border-r md:pr-6">
-                <p className="text-end text-sm">Soutenu par les entreprises</p>
-              </div>
-              <div className="relative py-6 md:w-[calc(100%-11rem)]">
-                <div className="bg-linear-to-r from-background absolute inset-y-0 left-0 w-20"></div>
-                <div className="bg-linear-to-l from-background absolute inset-y-0 right-0 w-20"></div>
-                <ProgressiveBlur
-                  className="pointer-events-none absolute left-0 top-0 h-full w-20"
-                  direction="left"
-                  blurIntensity={1}
-                />
-                <ProgressiveBlur
-                  className="pointer-events-none absolute right-0 top-0 h-full w-20"
-                  direction="right"
-                  blurIntensity={1}
-                />
-              </div>
-            </div>
-          </div>
-        </section> */}
       </Box>
     </>
   );
