@@ -5,5 +5,8 @@
   "french": "Français",
   "english": "Anglais",
   "globals.button.login": "Se connecter",
-  "globals.button.register": "S'inscrire"
+  "globals.button.register": "S'inscrire",
+  "globals.hero.title": "Quand une porte se ferme,",
+  "globals.hero.title2": " TheEnd.Page s'ouvre.",
+  "globals.button.start": " Commencer"
 }

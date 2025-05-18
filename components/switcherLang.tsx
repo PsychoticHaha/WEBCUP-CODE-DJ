@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/router";
 import { FormattedMessage } from "react-intl";
-import Image from "next/image";
 
 
 export function SwitcherLanguage() {
@@ -36,11 +35,11 @@ export function SwitcherLanguage() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" style={{ zIndex: 9999 }}>
         <DropdownMenuItem onClick={() => push(pathname, pathname, { locale: 'fr' })}>
-          🇫🇷
+          🇫🇷 <Box sx={{ minWidth: "1px", height: "100%" }}></Box>
           <FormattedMessage id="french" />
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => push(pathname, pathname, { locale: 'en' })}>
-          🇬🇧
+          🇬🇧<Box sx={{ minWidth: "1px", height: "100%" }}></Box>
           <FormattedMessage id="english" />
         </DropdownMenuItem>
       </DropdownMenuContent>

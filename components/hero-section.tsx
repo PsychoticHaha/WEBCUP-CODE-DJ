@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { Button } from "@mui/material";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import SafeFormattedMessage from "./SafeFormattedMessage/SafeFormattedMessage";
 import { useRouter } from "next/router";
+import { Box, Typography } from "@mui/material";
+import GlobalContainer from "./GlobalContainer/GlobalContainer";
 
 export default function HeroSection() {
   const router = useRouter();
@@ -20,41 +22,39 @@ export default function HeroSection() {
 
   return (
     <>
-      <main className="overflow-x-hidden">
-        <section>
-          <div className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44">
-            <div className="relative mx-auto flex max-w-6xl flex-col px-6 lg:block">
-              <div className="mx-auto max-w-xl text-center lg:ml-0 lg:w-1/2 lg:text-left">
-                <h1 className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16 xl:text-7xl">
-                  Quand une porte se ferme, TheEnd.Page s'ouvre {locale}
-                </h1>
-                <p className="mt-8 max-w-4xl text-pretty text-lg">
-                  Ceci est une page pour exprimer ce que vous ressentez, offre une large gamme de service pour vou aider à faire un pas avec le passé en transmettant un dernier message
-                </p>
-
-                <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
-                  <Button asChild size="lg" className="px-5 text-base">
-                    <Link href="#link">
-                      <span className="text-nowrap">Commencer ici</span>
-                    </Link>
-                  </Button>
-                  <Button
-                    key={2}
-                    asChild
-                    size="lg"
-                    variant="ghost"
-                    className="px-5 text-base"
-                  >
-                    <Link href="#link">
-                      <span className="text-nowrap">Essayer un démo</span>
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="bg-background pb-16 md:pb-32">
+      <Box component="main" className="" sx={{ background: "#000814", color: "white" }}>
+        <GlobalContainer component="section">
+          <Box className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44" sx={{ margin: "0 auto", maxWidth: "100vw", marginTop: { md: "74px", xs: "74px" } }}>
+            <Box className="flex" sx={{ flexDirection: "column", padding: "0 20px", textAlign: "center" }}>
+              <Typography variant="h1" className="" sx={{ lineHeight: "2", fontSize: "max(5vw, 20px)" }}>
+                <SafeFormattedMessage id="globals.hero.title" /> <br />
+                <SafeFormattedMessage id="globals.hero.title2" />
+              </Typography>
+              <Box className="" sx={{ marginTop: "20px" }}>
+                <Button className="px-5 text-base" sx={{
+                  marginTop: "100px",
+                  padding: "10px",
+                  background: "#b71c00",
+                  color: "#fff",
+                  fontWeight: "bold",
+                  fontSize: "15px",
+                  border: "1px solid transparent",
+                  "&:hover": {
+                    border: "1px solid #b71c00",
+                    color: "#b71c00"
+                  },
+                }}>
+                  <Link href="/create">
+                    <span className="text-nowrap">
+                      <SafeFormattedMessage id="globals.button.start"></SafeFormattedMessage>
+                    </span>
+                  </Link>
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+        </GlobalContainer>
+        {/* <section className="bg-background pb-16 md:pb-32">
           <div className="group relative m-auto max-w-6xl px-6">
             <div className="flex flex-col items-center md:flex-row">
               <div className="md:max-w-44 md:border-r md:pr-6">
@@ -153,8 +153,8 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
-        </section>
-      </main>
+        </section> */}
+      </Box>
     </>
   );
 }
