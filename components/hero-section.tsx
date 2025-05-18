@@ -8,11 +8,17 @@ import SafeFormattedMessage from "./SafeFormattedMessage/SafeFormattedMessage";
 import { useRouter } from "next/router";
 import { Box, Typography } from "@mui/material";
 import GlobalContainer from "./GlobalContainer/GlobalContainer";
+import ScrollDown from "./ScrollDown/ScrollDown";
+import { AnimatedTitle } from "./AnimatedTitle/AnimatedTitle";
+import { useIntl } from "react-intl";
+import AnimatedBackground from "./AnimatedBackground/AnimatedBackground";
+import GlassBreakBackground from "./BreakingGlassBackground/BreakingGlassBackground";
 
 export default function HeroSection() {
   const router = useRouter();
   const { locale } = router;
   const [mounted, setMounted] = useState(false)
+  const intl = useIntl();
 
   useEffect(() => {
     setMounted(true)
@@ -24,12 +30,12 @@ export default function HeroSection() {
     <>
       <Box component="main" className="" sx={{ background: "#000814", color: "white" }}>
         <GlobalContainer component="section">
-          <Box className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44" sx={{ margin: "0 auto", maxWidth: "100vw", marginTop: { md: "74px", xs: "74px" } }}>
-            <Box className="flex" sx={{ flexDirection: "column", padding: "0 20px", textAlign: "center" }}>
-              <Typography variant="h1" className="" sx={{ lineHeight: "2", fontSize: "max(5vw, 20px)" }}>
-                <SafeFormattedMessage id="globals.hero.title" /> <br />
-                <SafeFormattedMessage id="globals.hero.title2" />
-              </Typography>
+          <Box className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44" sx={{ margin: "0 auto", maxWidth: "100vw", marginTop: { md: "74px", xs: "74px" }, position: "relative" }}>
+            <Box sx={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 1 }}>
+              <GlassBreakBackground />
+            </Box>
+            <Box className="flex" sx={{ flexDirection: "column", padding: "0 20px", textAlign: "center", position: "relative", zIndex: 2 }}>
+              <AnimatedTitle title={intl.formatMessage({ id: "globals.hero.title" })} subtitle={intl.formatMessage({ id: "globals.hero.title2" })} />
               <Box className="" sx={{ marginTop: "20px" }}>
                 <Button className="px-5 text-base" sx={{
                   marginTop: "100px",
@@ -51,8 +57,102 @@ export default function HeroSection() {
                   </Link>
                 </Button>
               </Box>
+              <Box>
+                <ScrollDown targetId="features" />
+              </Box>
             </Box>
           </Box>
+          <Typography variant="h6" sx={{marginBottom: "20px", textAlign: "center", color: "#fff", fontSize: "20px", fontWeight: 700, padding: "0 20px", position: "relative", zIndex: 2}}>
+            <SafeFormattedMessage id="home.trust"></SafeFormattedMessage>
+          </Typography>
+          <Box className="slider" sx={{
+            background: "#ffffff",
+            height: "100px", display: "flex", alignItems: "center",
+            justifyContent: "center", padding: "0 20px", position: "relative", zIndex: 2,
+            "& .flex img": {
+              width: "auto",
+              height: "50px",
+            },
+          }}>
+            <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
+              <div className="flex">
+                <Image
+                  className="mx-auto h-5 w-fit dark:invert"
+                  src="/logos/fulldigits.svg"
+                  alt="Nvidia Logo"
+                  height="500"
+                  width="100"
+                />
+              </div>
+
+              <div className="flex">
+                <Image
+                  className="mx-auto h-4 w-fit dark:invert"
+                  src="/logos/bocasay.jpeg"
+                  alt="Column Logo"
+                  height="500"
+                  width="100"
+                />
+              </div>
+              <div className="flex">
+                <Image
+                  className="mx-auto h-4 w-fit dark:invert"
+                  src="/logos/etech.png"
+                  alt="GitHub Logo"
+                  height="500"
+                  width="100"
+                />
+              </div>
+              <div className="flex">
+                <Image
+                  className="mx-auto h-5 w-fit dark:invert"
+                  src="/logos/hodi.png"
+                  alt="Nike Logo"
+                  height="500"
+                  width="100"
+                />
+              </div>
+              <div className="flex">
+                <Image
+                  className="mx-auto h-5 w-fit dark:invert"
+                  src="/logos/ingenosya.jpeg"
+                  alt="Lemon Squeezy Logo"
+                  height="500"
+                  width="100"
+                />
+              </div>
+              <div className="flex">
+                <Image
+                  className="mx-auto h-4 w-fit dark:invert"
+                  src="/logos/yas.png"
+                  alt="Laravel Logo"
+                  height="500"
+                  width="100"
+                />
+              </div>
+              <div className="flex">
+                <Image
+                  className="mx-auto h-7 w-fit dark:invert"
+                  src="/logos/novity.jpeg"
+                  alt="Lilly Logo"
+                  height="500"
+                  width="100"
+                />
+              </div>
+
+              <div className="flex">
+                <Image
+                  className="mx-auto h-6 w-fit dark:invert"
+                  src="/logos/vivetic.png"
+                  alt="OpenAI Logo"
+                  height="500"
+                  width="100"
+                />
+              </div>
+            </InfiniteSlider>
+          </Box>
+
+
         </GlobalContainer>
         {/* <section className="bg-background pb-16 md:pb-32">
           <div className="group relative m-auto max-w-6xl px-6">
@@ -61,83 +161,6 @@ export default function HeroSection() {
                 <p className="text-end text-sm">Soutenu par les entreprises</p>
               </div>
               <div className="relative py-6 md:w-[calc(100%-11rem)]">
-                <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
-                  <div className="flex">
-                    <Image
-                      className="mx-auto h-5 w-fit dark:invert"
-                      src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                      alt="Nvidia Logo"
-                      height="20"
-                      width="20"
-                    />
-                  </div>
-
-                  <div className="flex">
-                    <Image
-                      className="mx-auto h-4 w-fit dark:invert"
-                      src="https://html.tailus.io/blocks/customers/column.svg"
-                      alt="Column Logo"
-                      height="16"
-                      width="20"
-                    />
-                  </div>
-                  <div className="flex">
-                    <Image
-                      className="mx-auto h-4 w-fit dark:invert"
-                      src="https://html.tailus.io/blocks/customers/github.svg"
-                      alt="GitHub Logo"
-                      height="16"
-                      width="20"
-                    />
-                  </div>
-                  <div className="flex">
-                    <Image
-                      className="mx-auto h-5 w-fit dark:invert"
-                      src="https://html.tailus.io/blocks/customers/nike.svg"
-                      alt="Nike Logo"
-                      height="20"
-                      width="20"
-                    />
-                  </div>
-                  <div className="flex">
-                    <Image
-                      className="mx-auto h-5 w-fit dark:invert"
-                      src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                      alt="Lemon Squeezy Logo"
-                      height="20"
-                      width="20"
-                    />
-                  </div>
-                  <div className="flex">
-                    <Image
-                      className="mx-auto h-4 w-fit dark:invert"
-                      src="https://html.tailus.io/blocks/customers/laravel.svg"
-                      alt="Laravel Logo"
-                      height="16"
-                      width="20"
-                    />
-                  </div>
-                  <div className="flex">
-                    <Image
-                      className="mx-auto h-7 w-fit dark:invert"
-                      src="https://html.tailus.io/blocks/customers/lilly.svg"
-                      alt="Lilly Logo"
-                      height="28"
-                      width="20"
-                    />
-                  </div>
-
-                  <div className="flex">
-                    <Image
-                      className="mx-auto h-6 w-fit dark:invert"
-                      src="https://html.tailus.io/blocks/customers/openai.svg"
-                      alt="OpenAI Logo"
-                      height="24"
-                      width="20"
-                    />
-                  </div>
-                </InfiniteSlider>
-
                 <div className="bg-linear-to-r from-background absolute inset-y-0 left-0 w-20"></div>
                 <div className="bg-linear-to-l from-background absolute inset-y-0 right-0 w-20"></div>
                 <ProgressiveBlur
