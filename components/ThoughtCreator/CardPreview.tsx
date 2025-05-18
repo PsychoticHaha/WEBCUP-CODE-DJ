@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Palette, User } from 'lucide-react';
 import { useThought } from '@/provider/ThoughtContext';
 import { useEmotion } from '@/hooks/useEmotion';
