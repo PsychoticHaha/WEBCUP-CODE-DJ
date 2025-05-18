@@ -21,5 +21,12 @@
   "globals.button.back": "Retour",
   "login.account-infos": "Informations de compte",
   "login.personnal-details": "Informations personnelles",
-  "login.confirmation": "Confirmation"
+  "login.confirmation": "Confirmation",
+  "write-thougts": "Ecrivez vos pensées",
+  "express-yourself": "Exprimez-vous",
+  "with-gif": "Envoyer avec un GIF",
+  "generate-a-card": "Générer une page",
+  "preview": "Aperçu",
+  "your-emo": "Votre émotion",
+  "your-inspi": "Le texte généré apparaitra ici..."
 }

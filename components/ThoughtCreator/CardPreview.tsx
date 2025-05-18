@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Palette, User } from 'lucide-react';
 import { useThought } from '@/provider/ThoughtContext';
+import { useEmotion } from '@/hooks/useEmotion';
+import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 
 const BACKGROUND_COLORS = [
   '#121A2C', // dark-800
@@ -14,12 +17,22 @@ const BACKGROUND_COLORS = [
 const CardPreview: React.FC = () => {
   const { thought, updateThought } = useThought();
   const [showColorPicker, setShowColorPicker] = useState(false);
-  
+  const intl = useIntl()
   const handleColorChange = (color: string) => {
     updateThought({ backgroundColor: color });
     setShowColorPicker(false);
   };
-  
+
+  const {locale} = useRouter()
+  const {getEmotion,emotion} = useEmotion(thought?.text ,true,locale)
+
+  useEffect(() => {
+    if (thought.text) {
+      getEmotion(thought.text);
+    }
+  }
+  , [thought.text]);
+
   return (
     <div className="card-preview h-[450px] md:h-[480px] flex flex-col">
       <div 
@@ -40,7 +53,9 @@ const CardPreview: React.FC = () => {
           <div className="w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center">
             <User className="w-4 h-4" />
           </div>
-          <span className="text-sm font-medium">Utilisateur</span>
+          <span className="text-sm font-medium">
+          {intl.formatMessage({ id: "your-emo" })}
+          </span>
           {thought.emotion && (
             <span className="text-xl ml-2" role="img" aria-label="Émotion">
               {
@@ -56,13 +71,13 @@ const CardPreview: React.FC = () => {
         </div>
         
         <div className="flex-1 overflow-y-auto">
-          {thought.text ? (
+          {(thought.text && emotion) ? (
             <p className="text-white text-base md:text-lg whitespace-pre-wrap">
-              {thought.text}
+              {emotion}
             </p>
           ) : (
             <p className="text-gray-400 text-base md:text-lg italic">
-              Votre texte apparaîtra ici...
+              {intl.formatMessage({ id: "your-inspi" })}
             </p>
           )}
         </div>

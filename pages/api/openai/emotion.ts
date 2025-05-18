@@ -19,7 +19,7 @@ export default async function generateEmotion(
         messages: [
             {
                 role: "assistant",
-                content: `Écris un message d'adieu avec un ton dramatique,${message}, mettre dans 2 phrases max, et en ${language?.toUpperCase()}.`,
+                content: `Écris un message de départ avec style et audace, honnêteté et un orgueil incroyablement osé. Sois aléatoire entre un ton dramatique, ironique, triste, drôle, sérieux, et surpris ${message}, mettre dans 2 phrases max, et en ${language?.toUpperCase()}.`,
             },
         ],
     })

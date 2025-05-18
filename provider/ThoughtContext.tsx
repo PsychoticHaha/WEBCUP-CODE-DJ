@@ -12,6 +12,8 @@ export interface ThoughtState {
 interface ThoughtContextType {
   thought: ThoughtState;
   updateThought: (updates: Partial<ThoughtState>) => void;
+  emotionText?: string;
+  updateEmotionText?: (text: string) => void;
   resetThought: () => void;
 }
 
@@ -26,7 +28,7 @@ const ThoughtContext = createContext<ThoughtContextType | undefined>(undefined);
 
 export const ThoughtProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [thought, setThought] = useState<ThoughtState>(defaultThought);
-
+  const [emotionText, setEmotionText] = useState<string | undefined>(undefined);
   const updateThought = (updates: Partial<ThoughtState>) => {
     setThought((prev) => ({ ...prev, ...updates }));
   };
@@ -36,7 +38,7 @@ export const ThoughtProvider: React.FC<{ children: ReactNode }> = ({ children })
   };
 
   return (
-    <ThoughtContext.Provider value={{ thought, updateThought, resetThought }}>
+    <ThoughtContext.Provider value={{ thought, updateThought, resetThought, emotionText, updateEmotionText: setEmotionText }}>
       {children}
     </ThoughtContext.Provider>
   );

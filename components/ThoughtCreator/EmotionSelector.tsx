@@ -1,5 +1,7 @@
 import { Emotion, useThought } from '@/provider/ThoughtContext';
+import { Box } from '@mui/material';
 import React from 'react';
+import GlobalContainer from '../GlobalContainer/GlobalContainer';
 
 interface EmotionOption {
   type: Emotion;
@@ -24,7 +26,7 @@ const EmotionSelector: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-between items-center space-x-2 md:space-x-4 py-2">
+    <GlobalContainer className="flex justify-between items-center space-x-2 md:space-x-4 py-2">
       {emotions.map((emotion) => (
         <button
           key={emotion.type}
@@ -32,15 +34,15 @@ const EmotionSelector: React.FC = () => {
           onClick={() => handleEmotionSelect(emotion.type)}
           aria-label={emotion.label}
         >
-          <span className="block transform transition-transform duration-300 group-hover:scale-110">
+          <Box component="span" className="block transform transition-transform duration-300 group-hover:scale-110" sx={{ fontSize: "25px", cursor: "pointer" }}>
             {emotion.emoji}
-          </span>
+          </Box>
           <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs bg-dark-700 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
             {emotion.label}
           </span>
         </button>
       ))}
-    </div>
+    </GlobalContainer>
   );
 };
 
