@@ -13,5 +13,13 @@
   "home.trust": "They trust us",
   "globals.have.not-account": "Don't have an account?",
   "globals.welcome-back": "Welcome back!",
-  "globals.connect-first": "Sign in to vote on the page."
+  "globals.connect-first": "Sign in to vote on the page.",
+  "register.confirm-details": "Add your details :",
+  "register.last-name": "Last Name",
+  "register.first-name": "First Name",
+  "globals.button.next": "Next",
+  "globals.button.back": "Back",
+  "login.account-infos": "Account infos",
+  "login.personnal-details": "Personnal details",
+  "login.confirmation": "Confirmation"
 }

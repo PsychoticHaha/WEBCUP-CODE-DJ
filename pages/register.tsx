@@ -13,8 +13,9 @@ import {
 } from "@mui/material";
 import PageLayout from "@/components/PageLayout/PageLayout";
 import SafeFormattedMessage from "@/components/SafeFormattedMessage/SafeFormattedMessage";
+import { useIntl } from "react-intl";
 
-const steps = ["Account Info", "Personal Details", "Confirmation"];
+
 
 type FormValues = {
   email: string;
@@ -25,6 +26,9 @@ type FormValues = {
 
 export default function Register() {
   const [activeStep, setActiveStep] = useState(0);
+  const intl = useIntl();
+  const steps = [intl.formatMessage({ id: "login.account-infos" }), intl.formatMessage({ id: "login.personnal-details" }), intl.formatMessage({ id: "login.confirmation" })];
+
   const {
     control,
     handleSubmit,
@@ -153,12 +157,10 @@ export default function Register() {
             )}
             {activeStep === 2 && (
               <Box>
-                <Typography variant="subtitle1" gutterBottom>
-                  Please confirm your details:
-                </Typography>
-                <Typography>Email: {getValues("email")}</Typography>
-                <Typography>First Name: {getValues("firstName")}</Typography>
-                <Typography>Last Name: {getValues("lastName")}</Typography>
+                <SafeFormattedMessage id="register.confirm-details" defaultMessage="Please confirm your details:" />
+                <Typography><SafeFormattedMessage id="register.email" defaultMessage={`Email: ${getValues("email")}`} /></Typography>
+                <Typography><SafeFormattedMessage id="register.first-name" defaultMessage={`First Name: ${getValues("firstName")}`} /></Typography>
+                <Typography><SafeFormattedMessage id="register.last-name" defaultMessage={`Last Name: ${getValues("lastName")}`} /></Typography>
               </Box>
             )}
             <Box display="flex" justifyContent="space-between" mt={3}>
@@ -167,15 +169,15 @@ export default function Register() {
                 onClick={onBack}
                 variant="outlined"
               >
-                Back
+                <SafeFormattedMessage id="globals.button.back"></SafeFormattedMessage>
               </Button>
               {activeStep < steps.length - 1 ? (
                 <Button onClick={onNext} variant="contained">
-                  Next
+                  <SafeFormattedMessage id="globals.button.next"></SafeFormattedMessage>
                 </Button>
               ) : (
                 <Button type="submit" variant="contained">
-                  Register
+                  <SafeFormattedMessage id="globals.button.register"></SafeFormattedMessage>
                 </Button>
               )}
             </Box>
