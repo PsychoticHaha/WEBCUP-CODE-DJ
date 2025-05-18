@@ -51,10 +51,10 @@ const Login: React.FC = () => {
         >
             <StyledPaper sx={{ boxShadow: 3, borderRadius: 2 }}>
                 <Typography variant="h4" align="center" gutterBottom color="black">
-                    Welcome Back!
+                    Bienvenue
                 </Typography>
                 <Typography variant="subtitle1" align="center" color="textSecondary" gutterBottom>
-                    Sign in to continue.
+                    Connectez-vous pour continuer.
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 2 }}>
                     <TextField
