@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
-
   Box,
   Button,
   Step,
@@ -15,8 +14,6 @@ import PageLayout from "@/components/PageLayout/PageLayout";
 import SafeFormattedMessage from "@/components/SafeFormattedMessage/SafeFormattedMessage";
 import { useIntl } from "react-intl";
 
-
-
 type FormValues = {
   email: string;
   password: string;
@@ -28,7 +25,11 @@ export default function Register() {
   const [activeStep, setActiveStep] = useState(0);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const intl = useIntl();
-  const steps = [intl.formatMessage({ id: "login.account-infos" }), intl.formatMessage({ id: "login.personnal-details" }), intl.formatMessage({ id: "login.confirmation" })];
+  const steps = [
+    intl.formatMessage({ id: "login.account-infos" }),
+    intl.formatMessage({ id: "login.personnal-details" }),
+    intl.formatMessage({ id: "login.confirmation" }),
+  ];
 
   const {
     control,
@@ -61,38 +62,78 @@ export default function Register() {
 
   const onSubmit = async (data: FormValues) => {
     setErrorMsg(null);
+
     try {
-      const res = await fetch("/api/register", { // crée cet endpoint API pour gérer inscription
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-          name: data.firstName,
-          fullname: data.lastName,
-        }),
+      // Charger bcryptjs dynamiquement
+      const bcrypt = (await import("bcryptjs")).default;
+
+      // Hasher le mot de passe avant de commencer la transaction IndexedDB
+      const hashedPassword = await bcrypt.hash(data.password, 10);
+
+      // Créer un nouvel utilisateur
+      const newUser = {
+        email: data.email,
+        password: hashedPassword,
+        name: data.firstName,
+        fullname: data.lastName,
+        created_at: new Date().toISOString(),
+      };
+
+      // Ouvrir la base de données IndexedDB
+      const request = indexedDB.open("UserDB", 1);
+
+      request.onupgradeneeded = (event) => {
+        const db = (event.target as IDBOpenDBRequest).result;
+        if (!db.objectStoreNames.contains("users")) {
+          db.createObjectStore("users", { keyPath: "email" });
+        }
+      };
+
+      const dbPromise = new Promise<IDBDatabase>((resolve, reject) => {
+        request.onsuccess = (event) => resolve((event.target as IDBOpenDBRequest).result);
+        request.onerror = () => reject(new Error("Erreur d'ouverture de la base de données"));
       });
 
-      const json = await res.json();
+      const db = await dbPromise;
 
-      if (!res.ok) {
-        setErrorMsg(json.error || "Erreur inconnue");
+      // Vérifier si l'utilisateur existe déjà
+      const transactionCheck = db.transaction("users", "readonly");
+      const storeCheck = transactionCheck.objectStore("users");
+
+      const existingUser = await new Promise((resolve) => {
+        const request = storeCheck.get(data.email);
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => resolve(null);
+      });
+
+      if (existingUser) {
+        setErrorMsg("Cet email est déjà utilisé");
         return;
       }
 
+      // Ajouter l'utilisateur avec une nouvelle transaction
+      const transactionAdd = db.transaction("users", "readwrite");
+      const storeAdd = transactionAdd.objectStore("users");
+
+      await new Promise<void>((resolve, reject) => {
+        const request = storeAdd.add(newUser);
+        request.onsuccess = () => resolve();
+        request.onerror = () => reject(new Error("Erreur lors de l'ajout de l'utilisateur"));
+      });
+
       alert("Inscription réussie !");
-      // Ici, tu peux rediriger l'utilisateur ou changer d'état, etc.
+      setActiveStep(0); // Réinitialiser le formulaire
     } catch (e) {
-      setErrorMsg("Erreur réseau ou serveur");
+      setErrorMsg("Erreur lors de l'inscription : " + (e as Error).message);
     }
   };
 
   return (
     <PageLayout>
       <Box className="flex justify-center items-center wrapper" sx={{ minHeight: "calc(100vh - 74px)" }}>
-        <Paper sx={{ p: 4, maxWidth: "fit-content", mx: "auto", marginTop: "74px", }}>
+        <Paper sx={{ p: 4, maxWidth: "fit-content", mx: "auto", marginTop: "74px" }}>
           <Typography variant="h5" align="center" gutterBottom sx={{ mb: 3 }}>
-            <SafeFormattedMessage id="globals.button.register"></SafeFormattedMessage>
+            <SafeFormattedMessage id="globals.button.register" />
           </Typography>
           <Stepper activeStep={activeStep} sx={{ mb: 3 }}>
             {steps.map((label) => (
@@ -101,6 +142,11 @@ export default function Register() {
               </Step>
             ))}
           </Stepper>
+          {errorMsg && (
+            <Typography color="error" align="center" sx={{ mb: 2 }}>
+              {errorMsg}
+            </Typography>
+          )}
           <form onSubmit={handleSubmit(onSubmit)}>
             {activeStep === 0 && (
               <Box display="flex" flexDirection="column" gap={2}>
@@ -182,9 +228,15 @@ export default function Register() {
             {activeStep === 2 && (
               <Box>
                 <SafeFormattedMessage id="register.confirm-details" defaultMessage="Please confirm your details:" />
-                <Typography><SafeFormattedMessage id="register.email" defaultMessage={`Email: ${getValues("email")}`} /></Typography>
-                <Typography><SafeFormattedMessage id="register.first-name" defaultMessage={`First Name: ${getValues("firstName")}`} /></Typography>
-                <Typography><SafeFormattedMessage id="register.last-name" defaultMessage={`Last Name: ${getValues("lastName")}`} /></Typography>
+                <Typography>
+                  <SafeFormattedMessage id="register.email" defaultMessage={`Email: ${getValues("email")}`} />
+                </Typography>
+                <Typography>
+                  <SafeFormattedMessage id="register.first-name" defaultMessage={`First Name: ${getValues("firstName")}`} />
+                </Typography>
+                <Typography>
+                  <SafeFormattedMessage id="register.last-name" defaultMessage={`Last Name: ${getValues("lastName")}`} />
+                </Typography>
               </Box>
             )}
             <Box display="flex" justifyContent="space-between" mt={3}>
@@ -193,15 +245,15 @@ export default function Register() {
                 onClick={onBack}
                 variant="outlined"
               >
-                <SafeFormattedMessage id="globals.button.back"></SafeFormattedMessage>
+                <SafeFormattedMessage id="globals.button.back" />
               </Button>
               {activeStep < steps.length - 1 ? (
                 <Button onClick={onNext} variant="contained">
-                  <SafeFormattedMessage id="globals.button.next"></SafeFormattedMessage>
+                  <SafeFormattedMessage id="globals.button.next" />
                 </Button>
               ) : (
                 <Button type="submit" variant="contained">
-                  <SafeFormattedMessage id="globals.button.register"></SafeFormattedMessage>
+                  <SafeFormattedMessage id="globals.button.register" />
                 </Button>
               )}
             </Box>
